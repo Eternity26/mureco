@@ -4,7 +4,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 import requests
 from PIL import Image
-from io import BytesIO  
+from io import BytesIO
 
 SPOTIFY_REDIRECT_URI = 'http://localhost:8501/'
 SPOTIFY_SCOPE = 'user-library-read'
@@ -28,18 +28,22 @@ def authorize(spotify_username, spotify_client_id, spotify_client_secret):
             return False
         return True
 
-    except Exception as e:
+    except (spotipy.SpotifyException, spotipy.SpotifyOauthError):
         return False
 
 
 def get_image_data_from_track_id(track_id):
-    id_str = str(track_id.astype(str)).split()[2]
+    global sp
+    try:
+        id_str = str(track_id.astype(str)).split()[2]
 
-    track = sp.track(id_str)
-    image_url = track['album']['images'][0]['url']
-    response = requests.get(image_url)
-    content = response.content
+        track = sp.track(id_str)
+        image_url = track['album']['images'][0]['url']
+        response = requests.get(image_url)
+        content = response.content
 
-    pil = Image.open(BytesIO(content))
-    image_df = pd.DataFrame({'album_image': [pil]})
-    return image_df
+        pil = Image.open(BytesIO(content))
+        image_df = pd.DataFrame({'album_image': [pil]})
+        return image_df
+    except spotipy.SpotifyException as e:
+        return None
