@@ -5,7 +5,7 @@ from recommendation_backend import get_data_with_info, get_track_info_list, get_
     get_info_by_id, get_recommendation_ids
 from spotipy_backend import authorize, get_image_data_from_track_id, test_authorization
 
-st.set_page_config(page_title='Music Recommendation System', page_icon=':smiling_cat_with_heart_eyes:', layout='wide')
+st.set_page_config(page_title='Music Recommendation System', page_icon=':cow:', layout='wide')
 
 data_with_info = get_data_with_info()
 track_info_list = get_track_info_list()
@@ -14,7 +14,7 @@ authorized = False
 
 # body
 with st.container():
-    col1, col2 = st.columns([1, 3], gap='large')
+    col1, col2 = st.columns([1, 2], gap='large')
 
 # authorization
 with col1:
@@ -25,7 +25,10 @@ with col1:
 
         st.write('If no detail is given, image will not be included in the recommendation result. However, '
                  'the information can still be displayed the format: ')
-        st.code('''artists - track_name | from\nalbum_name''')
+        with st.container(border=True):
+            st.write('''artists - track_name | from album_name''')
+
+        st.divider()
 
         SPOTIFY_USERNAME = st.text_input('User Name')
         SPOTIFY_CLIENT_ID = st.text_input('Client ID')
@@ -72,4 +75,5 @@ with col2:
                         if get_image_data_from_track_id(recommendation_id[0]):
                             recommendation_image = get_image_data_from_track_id(recommendation_id)
                             recommendation_info = pd.concat([recommendation_image, recommendation_info], axis=1)
+
                     st.write(recommendation_info)

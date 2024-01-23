@@ -6,7 +6,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-SPOTIFY_REDIRECT_URI = 'http://localhost:8501/'
+SPOTIFY_REDIRECT_URI = 'https://music-recommendation-system.streamlit.app/#/'
 SPOTIFY_SCOPE = 'user-library-read'
 
 auth_manager = None
