@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 # import matplotlib.pyplot as plt
-import streamlit as st
 from sklearn.cluster import KMeans
 # from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
@@ -10,8 +9,6 @@ from scipy.spatial.distance import cdist
 scaler = StandardScaler()
 
 
-# cache data so save memory
-@st.cache_data
 def read_data():
     # read data, get 114000 rows
     data = pd.read_csv('datasets/dataset.csv')

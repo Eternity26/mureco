@@ -35,9 +35,7 @@ def authorize(spotify_username, spotify_client_id, spotify_client_secret):
 def get_image_data_from_track_id(track_id):
     global sp
     try:
-        id_str = str(track_id.astype(str)).split()[2]
-
-        track = sp.track(id_str)
+        track = sp.track(track_id)
         image_url = track['album']['images'][0]['url']
         response = requests.get(image_url)
         content = response.content
@@ -47,3 +45,7 @@ def get_image_data_from_track_id(track_id):
         return image_df
     except spotipy.SpotifyException as e:
         return None
+
+
+def test_authorization():
+    sp.search('')
