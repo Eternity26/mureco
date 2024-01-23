@@ -1,0 +1,9 @@
+pandas~=2.2.0
+streamlit~=1.30.0
+spotipy~=2.23.0
+numpy~=1.26.3
+scikit-learn~=1.4.0
+scipy~=1.11.4
+matplotlib~=3.8.2
+requests~=2.31.0
+pillow~=10.2.0
