@@ -1,7 +1,5 @@
 import streamlit as st
 
-from pages.page_setting import setting
-
 # noinspection PyTypeChecker
 st.set_page_config(page_title='Home - Neunai',
                    page_icon=':cow:',
@@ -13,10 +11,9 @@ st.set_page_config(page_title='Home - Neunai',
                    }
                    )
 
-setting.apply()
+from pages.page_setting import setting
 
-if st.session_state.hide_sidebar:
-    st.markdown('''<style>[data-testid="stSidebar"]{display: none;}</style>''', unsafe_allow_html=True)
+exec(open("pages/page_setting/setting.py").read())
 
 import pandas as pd
 
@@ -38,7 +35,7 @@ with st.container():
 # authorization
 with col1:
     with st.container(border=True):
-        st.markdown('###    Spotify Authorization')
+        st.markdown('### Spotify Authorization')
 
         st.divider()
 
@@ -70,7 +67,7 @@ with col2:
     with st.container(border=True):
         st.title('neunai')
 
-        st.markdown('##### - A Music Recommendation System')
+        st.markdown('##### A Music Recommendation System')
 
         st.divider()
 
