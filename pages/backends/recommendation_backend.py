@@ -101,11 +101,11 @@ def get_recommendation_ids(id_input, num_recommendation):
     # score = silhouette_score(features_all, model.labels_, metric='euclidean')
     # print('%.3f' % score)
 
-    # from input id to feature dataframe
+    # from input id to feature dataframe and get input features
     df_input = data.loc[data['track_id'] == id_str]
     features_input = get_features(df_input, features)
 
-    # get cluster number
+    # get cluster quantity
     pred = model.predict(features_input)
     num_cluster = pred[0]
 

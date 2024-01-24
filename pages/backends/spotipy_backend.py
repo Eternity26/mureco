@@ -48,8 +48,9 @@ def get_external_url_from_track_id(track_id):
     global sp
     try:
         track = sp.track(track_id)
-        external_url = track['external_url']
-        return external_url
+        external_url = track['external_urls']['spotify']
+        external_url_df = pd.DataFrame({'external_url': [external_url]})
+        return external_url_df
     except spotipy.SpotifyException as e:
         return None
 

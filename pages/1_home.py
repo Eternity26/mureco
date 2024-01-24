@@ -3,7 +3,7 @@ import streamlit as st
 from pages.page_setting import setting
 
 # noinspection PyTypeChecker
-st.set_page_config(page_title='Home - Neura',
+st.set_page_config(page_title='Home - Neunai',
                    page_icon=':cow:',
                    layout='wide',
                    menu_items={
@@ -68,9 +68,9 @@ with col1:
 # recommendation
 with col2:
     with st.container(border=True):
-        st.title('neura')
+        st.title('neunai')
 
-        st.markdown('##### -    A Music Recommendation System')
+        st.markdown('##### - A Music Recommendation System')
 
         st.divider()
 
