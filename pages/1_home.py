@@ -11,8 +11,6 @@ st.set_page_config(page_title='Home - Neunai',
                    }
                    )
 
-from pages.page_setting import setting
-
 exec(open("pages/page_setting/setting.py").read())
 
 import pandas as pd
