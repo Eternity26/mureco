@@ -1,13 +1,13 @@
 import streamlit as st
 
 # noinspection PyTypeChecker
-st.set_page_config(page_title='Home - Neunai',
+st.set_page_config(page_title='home - neunai',
                    page_icon=':cow:',
                    layout='wide',
                    menu_items={
                        'Get Help': None,
                        'Report a bug': None,
-                       'About': 'K. Wong "Neurofun"'
+                       'About': 'K. Wong'
                    }
                    )
 
@@ -20,45 +20,43 @@ from pages.backends.recommendation_backend import get_data_with_info, get_track_
 from pages.backends.spotipy_backend import authorize, get_image_data_from_track_id, \
     get_external_url_from_track_id
 
-data_with_info = get_data_with_info()
-track_info_list = get_track_info_list()
+if 'data_with_info' not in st.session_state:
+    st.session_state['data_with_info'] = get_data_with_info()
+    st.session_state['track_info_list'] = get_track_info_list()
 
-if 'authorize_clicked' not in st.session_state:
-    st.session_state.authorize_clicked = False
+data_with_info = st.session_state['data_with_info']
+track_info_list = st.session_state['track_info_list']
 
 # body
 with st.container():
-    col1, col2 = st.columns([1, 2.2], gap='large')
+    if 'code' not in st.session_state:
+        col1, col2 = st.columns([1, 2.2], gap='large')
+    else:
+        col2 = st.container()
 
 # authorization
-with col1:
-    with st.container(border=True):
-        st.markdown('### Spotify Authorization')
-
-        st.divider()
-
+if 'col1' in globals():
+    with col1:
         with st.container(border=True):
-            st.caption(
-                'If no detail is given, image will not be included in the recommendation result. However, the information can still be displayed as the format: ')
+            st.markdown('### Spotify Authorization')
+
+            st.divider()
+
             with st.container(border=True):
-                '''artists - track_name | from album_name'''
+                st.caption('Login to authorize to display album images and urls. Otherwise info of recommendations '
+                           'will be displayed as:')
+                with st.container(border=True):
+                    '''artists - track_name | from album_name'''
 
-        st.divider()
+            st.divider()
 
-        SPOTIFY_USERNAME = st.text_input('User Name')
-        SPOTIFY_CLIENT_ID = st.text_input('Client ID')
-        SPOTIFY_CLIENT_SECRET = st.text_input('Client Secret')
-
-        auth_manager = None
-
-        if st.button('Authorize'):
-            if authorize(SPOTIFY_USERNAME, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET):
-                st.session_state.authorize_clicked = True
-                st.info('If you are not directed to a new page, Authorization succeeded. '
-                        'Otherwise please fill details in the new page.')
-
+            auth_url = authorize()
+            if auth_url and len(auth_url) > 0:
+                st.link_button(label='login', url=auth_url)
             else:
                 st.error('Authorization failed. Please fill all fields correctly or check your network.')
+                if st.button('rerun'):
+                    st.rerun()
 
 # recommendation
 with col2:

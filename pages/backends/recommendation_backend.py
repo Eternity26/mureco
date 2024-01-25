@@ -7,8 +7,6 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from scipy.spatial.distance import cdist
 
-scaler = StandardScaler()
-
 
 @st.cache_data
 def read_data():
@@ -21,10 +19,20 @@ def read_data():
     track_info_list = [str(i[0]) + ' - ' + str(i[1]) + ' | from "' + str(i[2]) + '"' for i in track_info_list_2d]
     df_info = pd.DataFrame(track_info_list, columns=['track_info'])
     data_with_info = pd.concat([data, df_info], axis=1)
-    return data, track_info_list, data_with_info
+
+    st.session_state['data'] = data
+    st.session_state['track_info_list'] = track_info_list
+    st.session_state['data_with_info'] = data_with_info
+    st.session_state['scaler'] = StandardScaler()
 
 
-data, track_info_list, data_with_info = read_data()
+if 'data' not in st.session_state:
+    read_data()
+
+data = st.session_state['data']
+track_info_list = st.session_state['track_into_list']
+data_with_info = st.session_state['data_with_info']
+scaler = st.session_state['scaler']
 
 
 def get_standard_features(df, features):
