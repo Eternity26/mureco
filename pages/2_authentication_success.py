@@ -11,6 +11,8 @@ st.set_page_config(page_title='authentication success - neunai',
                    }
                    )
 
+exec(open("pages/page_setting/setting.py").read())
+
 from streamlit_extras.switch_page_button import switch_page
 
 import time
