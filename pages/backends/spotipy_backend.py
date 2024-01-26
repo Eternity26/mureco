@@ -58,6 +58,6 @@ def get_external_url_from_track_id(track_id):
         return None
 
 
-def init_spotify():
+def init_spotipy():
     global sp
     sp = spotipy.Spotify(auth_manager=auth_manager)
