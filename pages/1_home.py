@@ -45,7 +45,7 @@ with st.container(border=True):
         track_info_list)
 
     if not input_track_info_list:
-        st.error('Please choose at least one track.')
+        st.error('Please choose one track.')
     else:
         input_track_info = input_track_info_list[0]
         input_id = get_id_by_info(input_track_info)
