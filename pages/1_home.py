@@ -64,5 +64,7 @@ with st.container(border=True):
                             recommendation_external_url = get_external_url_from_track_id(recommendation_id)
                             recommendation_info = pd.concat([recommendation_info, recommendation_external_url],
                                                             axis=1)
+                    else:
+                        st.error('There\'s something wrong with the client. Please refresh or check your network.')
 
                     recommendation_info
