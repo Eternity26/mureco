@@ -2,7 +2,7 @@ import streamlit as st
 
 # noinspection PyTypeChecker
 st.set_page_config(page_title='authentication success - neunai',
-                   page_icon=':check_mark:',
+                   page_icon=':while_check_mark:',
                    layout='centered',
                    menu_items={
                        'Get Help': None,
