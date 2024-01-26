@@ -19,8 +19,7 @@ import time
 
 # get authentication code to send it to home by redirection
 if 'code' not in st.session_state:
-    query_params = st.query_params()
-    st.session_state['code'] = query_params['code']
+    st.session_state['code'] = st.query_params['code']
 
 # return home
 if 'authentication_passed_sec' not in st.session_state:
