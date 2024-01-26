@@ -27,7 +27,7 @@ def init_client():
         if auth_manager and sp:
             return True
     except (spotipy.SpotifyException, spotipy.SpotifyOauthError):
-        return None
+        return False
 
 
 def get_image_data_from_track_id(track_id):
