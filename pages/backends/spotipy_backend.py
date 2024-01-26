@@ -33,7 +33,8 @@ def init_client():
 def get_image_data_from_track_id(track_id):
     global sp
     try:
-        track = sp.track(track_id)
+        id_str = str(track_id)
+        track = sp.track(id_str)
         image_url = track['album']['images'][0]['url']
         response = requests.get(image_url)
         content = response.content
@@ -47,7 +48,8 @@ def get_image_data_from_track_id(track_id):
 def get_external_url_from_track_id(track_id):
     global sp
     try:
-        track = sp.track(track_id)
+        id_str = str(track_id)
+        track = sp.track(id_str)
         external_url = track['external_urls']['spotify']
         external_url_df = pd.DataFrame({'external_url': [external_url]})
         return external_url_df

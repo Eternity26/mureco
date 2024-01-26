@@ -51,7 +51,6 @@ with st.container(border=True):
 
         with st.container(height=350):
             for recommendation_id in get_recommendation_ids(input_id, recommendation_number).values.tolist():
-                st.write(str(recommendation_id[0]))
                 with st.container():
                     recommendation_info = get_info_by_id(recommendation_id[0])
 
