@@ -29,7 +29,7 @@ st.success(f'Authentication succeeded! Return home in {5 - st.session_state["aut
 time.sleep(1.0)
 return_progress = st.progress(value=st.session_state['authentication_passed_sec'] / 5.0)
 
-if st.session_state['authentication_passed_sec'] <= 5:
+if st.session_state['authentication_passed_sec'] < 5:
     st.session_state['authentication_passed_sec'] += 1
     st.rerun()
 
