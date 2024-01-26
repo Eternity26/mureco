@@ -40,7 +40,7 @@ with st.container(border=True):
 
     st.divider()
 
-    input_track_info_list = st.multiselect(
+    input_track_info_list = st.selectbox(
         "Please choose a track from dataset of " + str(data_with_info.shape[0]) + " tracks:",
         track_info_list)
 
