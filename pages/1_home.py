@@ -40,14 +40,13 @@ with st.container(border=True):
 
     st.divider()
 
-    input_track_info_list = st.selectbox(
+    input_track_info = st.selectbox(
         "Please choose a track from dataset of " + str(data_with_info.shape[0]) + " tracks:",
         track_info_list)
 
-    if not input_track_info_list:
+    if not input_track_info:
         st.error('Please choose one track.')
     else:
-        input_track_info = input_track_info_list[0]
         input_id = get_id_by_info(input_track_info)
 
         with st.container(height=350):
