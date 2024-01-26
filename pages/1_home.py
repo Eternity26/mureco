@@ -1,7 +1,7 @@
 import streamlit as st
 
 # noinspection PyTypeChecker
-st.set_page_config(page_title='home - neunai',
+st.set_page_config(page_title='home - mureco',
                    page_icon=':cow:',
                    layout='wide',
                    menu_items={
@@ -29,7 +29,7 @@ track_info_list = st.session_state['track_info_list']
 
 # body
 with st.container(border=True):
-    st.title('neunai')
+    st.title('mureco')
 
     st.markdown('##### A Music Recommendation System')
 
