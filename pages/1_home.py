@@ -55,7 +55,7 @@ with st.container(border=True):
                 with st.container():
                     recommendation_info = get_info_by_id(recommendation_id[0])
 
-                    if auth:
+                    if authorize():
                         if get_image_data_from_track_id(recommendation_id[0]):
                             recommendation_image = get_image_data_from_track_id(recommendation_id)
                             recommendation_info = pd.concat([recommendation_image, recommendation_info], axis=1)
