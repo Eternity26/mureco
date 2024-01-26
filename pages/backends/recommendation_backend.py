@@ -20,19 +20,11 @@ def read_data():
     df_info = pd.DataFrame(track_info_list, columns=['track_info'])
     data_with_info = pd.concat([data, df_info], axis=1)
 
-    st.session_state['data'] = data
-    st.session_state['track_info_list'] = track_info_list
-    st.session_state['data_with_info'] = data_with_info
-    st.session_state['scaler'] = StandardScaler()
+    return data, track_info_list, data_with_info
 
 
-if 'data' not in st.session_state:
-    read_data()
-
-data = st.session_state['data']
-track_info_list = st.session_state['track_into_list']
-data_with_info = st.session_state['data_with_info']
-scaler = st.session_state['scaler']
+data, track_info_list, data_with_info = read_data()
+scaler = StandardScaler()
 
 
 def get_standard_features(df, features):
