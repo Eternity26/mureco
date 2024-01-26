@@ -2,7 +2,7 @@ import streamlit as st
 
 # noinspection PyTypeChecker
 st.set_page_config(page_title='home - mureco',
-                   page_icon=':cow:',
+                   page_icon=':musical_note:',
                    layout='wide',
                    menu_items={
                        'Get Help': None,
