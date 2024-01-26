@@ -1,4 +1,4 @@
-# neunai
+# mureco
 
 <a href="https://neunai.streamlit.app/" title="Python Version"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"></a><br>
 
