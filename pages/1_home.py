@@ -18,7 +18,7 @@ import pandas as pd
 from pages.backends.recommendation_backend import get_data_with_info, get_track_info_list, get_id_by_info, \
     get_info_by_id, get_recommendation_ids
 from pages.backends.spotipy_backend import authorize, get_image_data_from_track_id, \
-    get_external_url_from_track_id
+    get_external_url_from_track_id, init_spotify
 
 if 'data_with_info' not in st.session_state:
     st.session_state['data_with_info'] = get_data_with_info()
@@ -58,7 +58,7 @@ if 'col1' in globals():
                 if st.button('rerun'):
                     st.rerun()
 else:
-
+    init_spotify()
 
 # recommendation
 with col2:
