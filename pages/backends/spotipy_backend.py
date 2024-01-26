@@ -21,7 +21,7 @@ def init_client():
 
     try:
         auth_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_SECRET,
-                                                client_secret=SPOTIPY_CLIENT_SECRET, )
+                                                client_secret=SPOTIPY_CLIENT_SECRET)
         sp = spotipy.Spotify(auth_manager=auth_manager)
 
         if auth_manager and sp:
