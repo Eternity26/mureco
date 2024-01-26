@@ -67,4 +67,4 @@ with st.container(border=True):
                     else:
                         st.error('There\'s something wrong with the client. Please refresh or check your network.')
 
-                    recommendation_info
+                    st.write(recommendation_info)
