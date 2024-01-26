@@ -13,10 +13,10 @@ SPOTIPY_CLIENT_SECRET = st.secrets['SPOTIPY_CLIENT_SECRET']
 SPOTIFY_SCOPE = 'user-library-read'
 
 auth_manager = None
-sp = spotipy.Spotify()
+sp = None
 
 
-def authorize():
+def init_client():
     global auth_manager, sp
 
     try:

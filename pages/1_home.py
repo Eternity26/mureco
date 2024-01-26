@@ -17,7 +17,7 @@ import pandas as pd
 
 from pages.backends.data_backend import get_data_with_info, get_track_info_list, get_id_by_info, \
     get_info_by_id, get_recommendation_ids
-from pages.backends.spotipy_backend import authorize, get_image_data_from_track_id, \
+from pages.backends.spotipy_backend import init_client, get_image_data_from_track_id, \
     get_external_url_from_track_id
 
 if 'data_with_info' not in st.session_state:
@@ -36,7 +36,7 @@ with st.container(border=True):
     st.divider()
 
     recommendation_number = st.slider(label='Please choose the number of recommendations:',
-                                      value=10, min_value=1, max_value=200, step=1)
+                                      value=1, min_value=1, max_value=200, step=1)
 
     st.divider()
 
@@ -55,7 +55,7 @@ with st.container(border=True):
                 with st.container():
                     recommendation_info = get_info_by_id(recommendation_id[0])
 
-                    if authorize():
+                    if init_client():
                         if get_image_data_from_track_id(recommendation_id[0]):
                             recommendation_image = get_image_data_from_track_id(recommendation_id)
                             recommendation_info = pd.concat([recommendation_image, recommendation_info], axis=1)
