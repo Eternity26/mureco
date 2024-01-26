@@ -57,6 +57,8 @@ if 'col1' in globals():
                 st.error('Authorization failed. Please fill all fields correctly or check your network.')
                 if st.button('rerun'):
                     st.rerun()
+else:
+
 
 # recommendation
 with col2:

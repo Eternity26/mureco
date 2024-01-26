@@ -56,3 +56,8 @@ def get_external_url_from_track_id(track_id):
         return external_url_df
     except spotipy.SpotifyException as e:
         return None
+
+
+def init_spotify():
+    global sp
+    sp = spotipy.Spotify(auth_manager=auth_manager)
