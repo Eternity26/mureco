@@ -43,7 +43,7 @@ if 'col1' in globals():
             st.divider()
 
             with st.container(border=True):
-                st.caption('Login to authorize to display album images and urls. Otherwise info of recommendations '
+                st.caption('Login to Spotify to display album images and urls. Otherwise info of recommendations '
                            'will be displayed as:')
                 with st.container(border=True):
                     '''artists - track_name | from album_name'''
@@ -52,7 +52,7 @@ if 'col1' in globals():
 
             auth_url = authorize()
             if auth_url and len(auth_url) > 0:
-                st.link_button(label='login', url=auth_url)
+                st.link_button(label='Login', url=auth_url)
             else:
                 st.error('Authorization failed. Please fill all fields correctly or check your network.')
                 if st.button('rerun'):
