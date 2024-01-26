@@ -2,16 +2,14 @@ import pandas as pd
 
 import streamlit as st
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials
 
 import requests
 from PIL import Image
 from io import BytesIO
 
-
 SPOTIPY_CLIENT_ID = st.secrets['SPOTIPY_CLIENT_ID']
 SPOTIPY_CLIENT_SECRET = st.secrets['SPOTIPY_CLIENT_SECRET']
-SPOTIFY_REDIRECT_URI = 'https://neunai.streamlit.app/authentication-success/'
 SPOTIFY_SCOPE = 'user-library-read'
 
 auth_manager = None
@@ -22,13 +20,12 @@ def authorize():
     global auth_manager, sp
 
     try:
-        auth_manager = SpotifyOAuth(client_id=SPOTIPY_CLIENT_SECRET,
-                                    client_secret=SPOTIPY_CLIENT_SECRET,
-                                    scope=SPOTIFY_SCOPE,
-                                    redirect_uri=SPOTIFY_REDIRECT_URI,
-                                    open_browser=False)
-        return auth_manager.get_authorize_url()
+        auth_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_SECRET,
+                                                client_secret=SPOTIPY_CLIENT_SECRET, )
+        sp = spotipy.Spotify(auth_manager=auth_manager)
 
+        if auth_manager and sp:
+            return True
     except (spotipy.SpotifyException, spotipy.SpotifyOauthError):
         return None
 
@@ -56,8 +53,3 @@ def get_external_url_from_track_id(track_id):
         return external_url_df
     except spotipy.SpotifyException as e:
         return None
-
-
-def init_spotipy():
-    global sp
-    sp = spotipy.Spotify(auth_manager=auth_manager)
