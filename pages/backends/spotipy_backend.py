@@ -9,8 +9,8 @@ from PIL import Image
 from io import BytesIO
 
 if 'SPOTIPY_CLIENT_ID' not in st.session_state:
-    SPOTIPY_CLIENT_ID = st.secrets['spotify']['SPOTIPY_CLIENT_ID']
-    SPOTIPY_CLIENT_SECRET = st.secrets['spotify']['SPOTIPY_CLIENT_SECRET']
+    SPOTIPY_CLIENT_ID = st.secrets['SPOTIPY_CLIENT_ID']
+    SPOTIPY_CLIENT_SECRET = st.secrets['SPOTIPY_CLIENT_SECRET']
     SPOTIFY_REDIRECT_URI = 'https://neunai.streamlit.app/authentication-success/'
     SPOTIFY_SCOPE = 'user-library-read'
 
