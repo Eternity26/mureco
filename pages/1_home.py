@@ -15,7 +15,7 @@ exec(open("pages/page_setting/setting.py").read())
 
 import pandas as pd
 
-from pages.backends.recommendation_backend import get_data_with_info, get_track_info_list, get_id_by_info, \
+from pages.backends.data_backend import get_data_with_info, get_track_info_list, get_id_by_info, \
     get_info_by_id, get_recommendation_ids
 from pages.backends.spotipy_backend import authorize, get_image_data_from_track_id, \
     get_external_url_from_track_id
