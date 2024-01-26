@@ -40,7 +40,7 @@ def get_image_data_from_track_id(track_id):
         pil = Image.open(BytesIO(content))
         image_df = pd.DataFrame({'album_image': [pil]})
         return image_df
-    except spotipy.SpotifyException as e:
+    except (spotipy.SpotifyException, spotipy.SpotifyOauthError) as e:
         return None
 
 
@@ -51,5 +51,5 @@ def get_external_url_from_track_id(track_id):
         external_url = track['external_urls']['spotify']
         external_url_df = pd.DataFrame({'external_url': [external_url]})
         return external_url_df
-    except spotipy.SpotifyException as e:
+    except (spotipy.SpotifyException, spotipy.SpotifyOauthError) as e:
         return None
